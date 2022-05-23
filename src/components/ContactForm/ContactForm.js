@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
+import { useAddContactMutation } from 'redux/api/contacts';
+// import { addContact } from 'redux/operations';
 
 import {
   ContactFormContainer,
@@ -10,8 +11,12 @@ import {
 } from './ContactForm.styled';
 
 export default function ContactForm() {
-  const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const [addContact] = useAddContactMutation();
+  // const dispatch = useDispatch();
+  // const contacts = useSelector(
+  //   state => state.contactsApi.queries['getAllContacts(undefined)'].data
+  // );
+  // console.log(contacts);
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -31,12 +36,13 @@ export default function ContactForm() {
     }
   };
   const onFormSubmit = e => {
-    e.preventDefault();
-    const isUserAdded = contacts.find(contact => contact.name === name);
-    if (isUserAdded) {
-      return alert(`User ${name} is already in contacts`);
-    }
-    dispatch(addContact({ name, phone }));
+    // e.preventDefault();
+    // const isUserAdded = contacts.find(contact => contact.name === name);
+    // if (isUserAdded) {
+    //   return alert(`User ${name} is already in contacts`);
+    // }
+    // useAddContactMutation({ name, phone });
+    addContact({ name, phone });
     reset();
   };
 
