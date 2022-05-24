@@ -29,6 +29,7 @@ export default function ContactForm() {
     }
   };
   const onFormSubmit = e => {
+    e.preventDefault();
     addContact({ name, phone });
     reset();
   };

@@ -9,18 +9,14 @@ import {
   useGetAllContactsQuery,
   useDeleteContactMutation,
 } from 'redux/api/contacts';
-import { useSelector } from 'react-redux';
 
-const ContactList = () => {
-  const filterValue = useSelector(state => state.contacts.filter);
-
+const ContactList = ({ filterValue }) => {
   const { data, isLoading } = useGetAllContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 
-  const normalizedText = filterValue.toLowerCase();
   const filteredContacts =
     isLoading ||
-    data.filter(contact => contact.name.toLowerCase().includes(normalizedText));
+    data.filter(contact => contact.name.toLowerCase().includes(filterValue));
 
   return (
     <ContactListContainer>
