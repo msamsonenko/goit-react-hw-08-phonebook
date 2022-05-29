@@ -8,12 +8,14 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { contactsApi } from './api/contacts';
+import { usersApi } from './api/users';
 import { myReducer } from './reducer';
 
 export const store = configureStore({
   reducer: {
     contacts: myReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
