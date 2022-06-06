@@ -19,7 +19,9 @@ export default function App() {
   const isRefreshing = useSelector(
     state => state.persistedReducer.isRefreshing
   );
-  const { data } = useRefetchUserQuery(token, { skip: token ? false : true });
+  const { data, isFetching } = useRefetchUserQuery(token, {
+    skip: token ? false : true,
+  });
 
   return (
     <>
