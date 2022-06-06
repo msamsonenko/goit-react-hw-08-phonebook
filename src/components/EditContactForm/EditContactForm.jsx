@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { useAddContactMutation } from 'redux/api/authApi';
+import { useEditContactMutation } from 'redux/api/authApi';
 import { Form, Button } from 'react-bootstrap';
 
-import { FormTitle } from './ContactForm.styled';
+import { FormTitle } from './EditContactForm.styled';
 
-export default function ContactForm({ closeForm }) {
-  const [addContact] = useAddContactMutation();
+export default function EditContactForm({ closeForm, contact }) {
+  const [editContact] = useEditContactMutation();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [id, setId] = useState(contact.id);
+
+  console.log(contact);
 
   const handleInputChange = e => {
     const { name } = e.target;
@@ -26,7 +29,8 @@ export default function ContactForm({ closeForm }) {
   };
   const onFormSubmit = e => {
     e.preventDefault();
-    addContact({ name, number });
+    console.log(e.target);
+    editContact({ name, number, id });
     closeForm();
     reset();
   };
@@ -46,29 +50,29 @@ export default function ContactForm({ closeForm }) {
           borderRadius: '5px',
         }}
       >
-        <FormTitle>Add Contact</FormTitle>
+        <FormTitle>Edit Contact</FormTitle>
         <Form.Group className="mb-3" controlId="formBasicEmail" width="300px">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Previous name: {contact.name.toUpperCase()}</Form.Label>
           <Form.Control
             type="text"
             name="name"
             value={name}
             required
             onChange={handleInputChange}
-            placeholder="Enter email"
+            placeholder="New name"
             autoComplete="off"
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Previous number: {contact.number}</Form.Label>
           <Form.Control
             type="tel"
             name="number"
             value={number}
             required
             onChange={handleInputChange}
-            placeholder="Password"
+            placeholder="New number"
           />
         </Form.Group>
         <Form.Group
@@ -80,7 +84,7 @@ export default function ContactForm({ closeForm }) {
           }}
         >
           <Button variant="primary" type="submit" style={{ width: '110px' }}>
-            Add
+            Edit
           </Button>
           <Button
             variant="primary"

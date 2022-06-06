@@ -1,4 +1,20 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+`;
+export const Link = styled(NavLink)`
+  text-decoration: none;
+`;
+export const Span = styled.span`
+  margin-top: 30px;
+`;
 
 export const PageHeader = styled.h2`
   text-align: center;

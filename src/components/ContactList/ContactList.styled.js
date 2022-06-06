@@ -12,8 +12,33 @@ export const ContactListItem = styled.li`
     margin-bottom: 5px;
   }
 `;
-export const ContactListBtn = styled.button`
-  margin-left: 20px;
+export const DeletetBtn = styled.button`
+width: 60px;
+  height: 35px;
+  padding: 5px;
+  color: #e03505;
+  border: 1px solid #e03505;
+  border-radius: 4px;
+  background-color: #fff;
+  &:hover {
+  outline: 1px solid #fff;
+    color: #fff;
+    background-color:#e03505;
+ 
+`;
+export const EditBtn = styled.button`
+width: 60px;
+  height: 35px;
+  padding: 5px;
+  color: #c58e12;
+  border: 1px solid #c58e12;
+  border-radius: 4px;
+  background-color: #fff;
+  &:hover {
+  outline: 1px solid #fff;
+    color: #fff;
+    background-color: #c58e12;
+ 
 `;
 export const ContactListName = styled.span`
   display: inline-block;

@@ -1,30 +1,20 @@
-import { Outlet, NavLink } from 'react-router-dom';
-import { Container } from './HomePage.styled';
-// import WelcomeMsg from 'components/WelcomeMsg';
-// import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { Header, Link, Main } from './HomePage.styled';
 
 import Navigation from 'components/Navigation';
 
 const HomePage = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // const toggleLoggedIn = () => {
-  //   setIsLoggedIn(!isLoggedIn);
-  // };
   return (
     <>
-      <Container>
+      <Header>
         <h1>
-          <NavLink to="/">Phonebook</NavLink>
+          <Link to="/">Phonebook</Link>
         </h1>
         <Navigation />
-      </Container>
-      {/* <button type="button" onClick={toggleLoggedIn}>
-        toggle
-      </button>
-      {isLoggedIn || <WelcomeMsg />} */}
-
-      <Outlet />
+      </Header>
+      <Main>
+        <Outlet />
+      </Main>
     </>
   );
 };

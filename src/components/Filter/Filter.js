@@ -4,7 +4,7 @@ import { filter } from 'redux/actions';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filterValue = useSelector(state => state.contacts.filter);
+  const filterValue = useSelector(state => state.persistedReducer.filter);
 
   const changeFilter = e => {
     dispatch(filter(e.currentTarget.value));

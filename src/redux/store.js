@@ -7,20 +7,21 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { contactsApi } from './api/contacts';
-import { usersApi } from './api/users';
-import { myReducer } from './reducer';
+import { persistStore } from 'redux-persist';
+import { persistedReducer } from './persist';
+import { authApi } from './api/authApi';
 
 export const store = configureStore({
   reducer: {
-    contacts: myReducer,
-    [contactsApi.reducerPath]: contactsApi.reducer,
-    [usersApi.reducerPath]: usersApi.reducer,
+    persistedReducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(contactsApi.middleware),
+    }).concat(authApi.middleware),
 });
+
+export const persistor = persistStore(store);

@@ -1,14 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { BiChevronsRight } from 'react-icons/bi';
+
+import {
+  Container,
+  WelcomeBox,
+  WelcomeText,
+  Button,
+} from './WelcomeMsg.styled';
 
 const WelcomeMsg = () => {
   return (
-    <>
-      <p>
-        Welcome to Phonebook please <NavLink to="login">Log in</NavLink> to get
-        started. <br />
-        Don't have an account? Please <NavLink to="register">Sign up</NavLink>
-      </p>
-    </>
+    <Container>
+      <WelcomeBox>
+        <WelcomeText>An efficient way for storing your contacts</WelcomeText>
+        <Button to="login">
+          Start now
+          <BiChevronsRight />
+        </Button>
+      </WelcomeBox>
+    </Container>
   );
 };
 

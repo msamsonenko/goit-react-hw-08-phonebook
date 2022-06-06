@@ -1,9 +1,14 @@
 import { useState } from 'react';
-import { PageHeader, Form, Label, Input, Button } from './LogIn.styled';
+import { useLogInUserMutation } from 'redux/api/authApi';
+import { Form, Button } from 'react-bootstrap';
+
+import { PageHeader, Link, Container, Span } from './LogIn.styled';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [logInUser] = useLogInUserMutation();
 
   const handleInputChange = e => {
     const { name } = e.target;
@@ -19,10 +24,10 @@ const LogIn = () => {
         return;
     }
   };
+
   const onFormSubmit = e => {
     e.preventDefault();
-    console.log(email, password);
-    //   addContact({ email, password });
+    logInUser({ email, password });
     reset();
   };
 
@@ -31,29 +36,50 @@ const LogIn = () => {
     setPassword('');
   };
   return (
-    <>
-      <PageHeader>Log In</PageHeader>
-      <Form onSubmit={onFormSubmit}>
-        <Label>Email</Label>
-        <Input
-          type="text"
-          name="email"
-          value={email}
-          required
-          onChange={handleInputChange}
-          autoComplete="off"
-        />
-        <Label>Password</Label>
-        <Input
-          type="text"
-          name="password"
-          value={password}
-          required
-          onChange={handleInputChange}
-        />
-        <Button type="submit">Log in</Button>
+    <Container>
+      <PageHeader>Welcome</PageHeader>
+      <Form onSubmit={onFormSubmit} style={{ width: '350px' }}>
+        <Form.Group className="mb-3" controlId="formBasicEmail" width="300px">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            value={email}
+            required
+            onChange={handleInputChange}
+            placeholder="Enter email"
+            autoComplete="off"
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            value={password}
+            required
+            onChange={handleInputChange}
+            placeholder="Password"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Button variant="primary" type="submit" style={{ width: '110px' }}>
+            Sign in
+          </Button>
+
+          <Span>
+            Not a member? <Link to="/register">Create account</Link>
+          </Span>
+        </Form.Group>
       </Form>
-    </>
+    </Container>
   );
 };
 

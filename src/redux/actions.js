@@ -13,3 +13,7 @@ export const removeContactRequest = createAction('contact/removeRequest');
 export const removeContactError = createAction('contact/removeError');
 
 export const filter = createAction('contacts/filter');
+export const isLoggedIn = createAction('users/login');
+export const token = createAction('users/token');
+export const user = createAction('users/data');
+export const isRefreshing = createAction('users/refresh');
