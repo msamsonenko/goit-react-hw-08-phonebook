@@ -21,7 +21,7 @@ export default function App() {
   );
   const { data } = useRefetchUserQuery(token, { skip: token ? false : true });
 
-  const filterValue = useSelector(state => state.persistedReducer.filter);
+  // const filterValue = useSelector(state => state.persistedReducer.filter);
 
   return (
     <>
